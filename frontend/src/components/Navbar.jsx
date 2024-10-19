@@ -8,7 +8,9 @@ const Navbar = () => {
 
   return (
     <div className="flex items-center justify-between py-5 font-medium">
+      <Link to='/' className="cursor-pointer">
       <img src={assets.logo} alt="" className="w-36" />
+      </Link>
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
         <NavLink to="/" className="flex flex-col items-center gap-1">
           <p>Home</p>
