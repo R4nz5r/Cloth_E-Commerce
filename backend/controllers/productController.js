@@ -43,15 +43,12 @@ const addProduct = async (req, res) => {
       image: imagesUrl,
       date: Date.now(),
     };
-    console.log(productData);
-
     const product = new productModel(productData);
 
     await product.save();
 
     res.json({ success: true, message: "Product added successfully!" });
-  } catch (error) {
-    console.error(error);
+  } catch (error) { 
     res.json({ success: false, message: error.message });
   }
 };
@@ -62,7 +59,7 @@ const listProduct = async (req, res) => {
     const products = await productModel.find({});
     res.json({ success: true, products });
   } catch (error) {
-    console.error(error);
+    
     res.json({ success: false, message: error.message });
   }
 };
@@ -72,8 +69,7 @@ const removeProduct = async (req, res) => {
   try {
     await productModel.findByIdAndDelete(req.body.id);
     res.json({ success: true, message: "Product removed successfully!" });
-  } catch (error) {
-    console.error(error);
+  } catch (error) { 
     res.json({ success: false, message: error.message });
   }
 };
@@ -85,7 +81,6 @@ const singleProduct = async (req, res) => {
     const product = await productModel.findById(productId);
     res.json({ success: true, product });
   } catch (error) {
-    console.error(error);
     res.json({ success: false, message: error.message });
   }
 };

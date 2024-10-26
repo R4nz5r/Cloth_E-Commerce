@@ -278,7 +278,7 @@ const Add = ({token}) => {
         <input
           type="checkbox"
           id="bestSeller"
-          onClick={() => setBestSeller(prev =>!prev)}
+          onChange={() => setBestSeller(prev =>!prev)}
           checked={bestSeller}
         />
         <label htmlFor="bestSeller" className="cursor-pointer">

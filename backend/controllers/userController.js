@@ -22,8 +22,7 @@ const loginUser = async (req, res) => {
     } else {
       res.json({ sucess: false, message: "Invalid credentials" });
     }
-  } catch (error) {
-    console.log(error);
+  } catch (error) { 
     res.json({ sucess: false, message: error.message });
   }
 };
@@ -63,8 +62,7 @@ const registerUser = async (req, res) => {
 
     const token = createToken(user._id);
     res.json({ sucess: true, token });
-  } catch (error) {
-    console.log(error);
+  } catch (error) { 
     res.json({ sucess: false, message: error.message });
   }
 };
@@ -83,8 +81,7 @@ const adminLogin = async (req, res) => {
     } else {
       res.json({ sucess: false, message: "Invalid credentials" });
     }
-  } catch (error) {
-    console.log(error);
+  } catch (error) { 
     res.json({ sucess: false, message: error.message });
   }
 };
