@@ -1,4 +1,4 @@
-import OrderModel from "../models/orderModel.js"
+import orderModel from "../models/orderModel.js"
 import userModel from "../models/userModel.js"
 
 
@@ -16,7 +16,7 @@ const placeOrder = async(req,res)=>{
             payment:false,
             date:Date.now()
         }
-        const newOrder = new OrderModel(orderData)
+        const newOrder = new orderModel(orderData)
         await newOrder.save()
 
         await userModel.findByIdAndUpdate(userId,{cartData:{}})
@@ -51,7 +51,16 @@ const allOrders = async(req,res)=>{
 }
 //All orders data for fontend
 const userOrders = async(req,res)=>{
+    try {
+        
+        const {userId} = req.body
+        const orders = await orderModel.find({userId})
+        res.json({success: true,orders})
 
+    } catch (error) {
+        console.log(error);
+        res.json({success: false,message:error.message})
+    }
 }
 
 //update Order Status for Admin Panel
