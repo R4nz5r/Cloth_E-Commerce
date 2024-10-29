@@ -10,6 +10,7 @@ import {
   allOrders,
   userOrders,
   updateStatus,
+  verifyStripe
 } from "../controllers/orderController.js";
 import authUser from "../middleware/auth.js";
 
@@ -21,11 +22,13 @@ orderRouter.post("/status", adminAuth, updateStatus);
 
 // payment routes
 orderRouter.post("/place", authUser, placeOrder);
-orderRouter.post("/strip", authUser, placeOrderStripe);
+orderRouter.post("/stripe", authUser, placeOrderStripe);
 orderRouter.post("/razorPay", authUser, placeOrderRazorpay);
-orderRouter.post("/razorPay", authUser, placeOrderBkash);
+orderRouter.post("/bkash", authUser, placeOrderBkash);
 
 // user routes
 orderRouter.post("/userorders", authUser, userOrders);
 
+// verify payment
+orderRouter.post("/verifyStripe", authUser, verifyStripe)
 export default orderRouter;

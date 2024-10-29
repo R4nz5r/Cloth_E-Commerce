@@ -40,29 +40,7 @@ const PlaceOder = () => {
       [name]: value,
     }));
   };
-  // const onSubmitHandler = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     let orderItems= []
-  //     for(const items in cartItems){
-  //       for(const item in cartItems[items]){
-  //         if(cartItems[items][item]>0){
-  //           const itemInfo = structuredClone(products.find(products => products._id === item))
-  //           if (itemInfo) {
-  //             itemInfo.size  = item
-  //             itemInfo.quantity = cartItems[items][item]
-  //             orderItems.push(itemInfo)
-  //           }
-  //         }
-  //       }
-  //     }
-  //     console.log(orderItems);
 
-  //   } catch (error) {
-  //     console.log(error);
-
-  //   }
-  // };
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -104,6 +82,21 @@ const PlaceOder = () => {
           }
           break;
         }
+        // api call for stipe
+        case "stripe": {
+          const responseStripe = await axios.post(
+            backendUrl + "/api/order/stripe",
+            orderData,
+            { headers: { token } }
+          );
+          if (responseStripe.data.success) {
+            const { session_url } = responseStripe.data;
+            window.location.replace(session_url);
+          } else {
+            toast.error(responseStripe.data.message);
+          }
+          break;
+        } 
 
         default:
           break;
